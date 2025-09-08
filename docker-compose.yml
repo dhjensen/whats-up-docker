@@ -1,0 +1,26 @@
+name: What's up docker
+
+services:
+  wud:
+    image: getwud/wud:${WUD_VERSION}
+    container_name: wud
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+      - wud_store:/store:rw
+    environment:
+      - WUD_TRIGGER_NTFY_PRIVATE_URL
+      - WUD_TRIGGER_NTFY_PRIVATE_TOPIC=wud
+      - WUD_TRIGGER_NTFY_PRIVATE_AUTH_TOKEN
+    ports:
+      - "${WUD_INTERFACE}:3000:3000"
+    networks:
+      - nginx-proxy-manager_frontend
+
+networks:
+  nginx-proxy-manager_frontend:
+    driver: brigde
+    external: true
+
+volumes:
+  wud_store:
