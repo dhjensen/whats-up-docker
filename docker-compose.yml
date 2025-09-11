@@ -6,16 +6,18 @@ services:
     container_name: wud
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - wud_store:/store:rw
     environment:
       - WUD_TRIGGER_NTFY_PRIVATE_URL
       - WUD_TRIGGER_NTFY_PRIVATE_TOPIC=wud
       - WUD_TRIGGER_NTFY_PRIVATE_AUTH_TOKEN
     ports:
-      - "${WUD_INTERFACE}:3000:3000"
+      - "127.0.0.1:3000:3000"
     networks:
       - nginx-proxy-manager_frontend
+    labels:
+      - wud.tag.include=^\d+\.\d+\.\d+$$
 
 networks:
   nginx-proxy-manager_frontend:
