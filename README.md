@@ -6,7 +6,6 @@ My [Whats up Docker](https://getwud.github.io/wud/#/) implementation with [NTFY]
 
 ```bash
 WUD_VERSION=version
-WUD_INTERFACE=IP address
 WUD_TRIGGER_NTFY_PRIVATE_URL=http://url:80
 WUD_TRIGGER_NTFY_PRIVATE_AUTH_TOKEN=token
 ```
