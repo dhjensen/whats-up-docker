@@ -21,7 +21,7 @@ services:
     labels:
       - wud.tag.include=^\d+\.\d+\.\d+$$
       - traefik.enable=true
-      - traefik.http.routers.wud-whatsupdocker.rule=Host(`wud-pc.dhjensen.tech`)
+      - traefik.http.routers.wud-whatsupdocker.rule=Host(`${WUD_FQDN}`)
 
 networks:
   backend:
