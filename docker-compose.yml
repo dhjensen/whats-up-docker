@@ -16,20 +16,17 @@ services:
       - "127.0.0.1:3000:3000"
     networks:
       - backend
-      - nginx-proxy-manager_frontend
     restart: unless-stopped
     labels:
       - wud.tag.include=^\d+\.\d+\.\d+$$
       - traefik.enable=true
       - traefik.http.routers.wud-whatsupdocker.rule=Host(`${WUD_FQDN}`)
+      - traefik.http.routers.wud-whatsupdocker.middlewares=ipallowlist@docker
 
 networks:
   backend:
     external: true
     driver: bridge
-  nginx-proxy-manager_frontend:
-    driver: brigde
-    external: true
 
 volumes:
   wud_store:
